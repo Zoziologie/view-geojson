@@ -1,0 +1,171 @@
+/*GENEAL STRUCTURE*/
+html{
+	margin-top:0!important;
+	overflow-y: hidden !important;
+}
+html.wait, html.wait * { cursor: wait !important; }
+body{
+	overflow: hidden;
+}
+body.body_blank.admin-bar{
+	top:0px!important;
+}
+img{
+	margin:auto;
+}
+#wpadminbar{
+	display:none;
+}
+
+#wrapper{
+	max-width:100%!important;
+}
+#main{
+	padding:0!important;
+}
+
+html, body, #wrapper, #main, .fusion-row, #content, .page, .post-content, #yourForm, .page-table, .page-row, .main, #map1{
+	height: 100%;
+}
+#map1{
+	
+	width:100%;
+}
+@media (min-width: 1200px){
+	.sidebar {
+		width: 490px ;
+	}
+	.sidebar-left ~ .sidebar-map .leaflet-left {
+		left: 500px ;
+	}
+}
+@media (max-width: 1199px) and (min-width: 992px){
+	.sidebar {
+		width: 350px ;
+	}
+	.sidebar-pane {
+		min-width: initial ;
+	}
+	.sidebar-left ~ .sidebar-map .leaflet-left {
+		left: 360px ;
+	}
+}
+@media (max-width: 991px) and (min-width: 768px){
+	.sidebar {
+		width: 350px ;
+	}
+	.sidebar-pane {
+		min-width: initial ;
+	}
+	.sidebar-left ~ .sidebar-map .leaflet-left {
+		left: 360px ;
+	}
+}
+.sidebar-pane{
+	padding:10px 15px;
+}
+.sidebar-header{
+	margin-bottom: 10px;
+}
+
+
+#navbar-poweredby, h2 {
+	font-family: 'Gloria Hallelujah';
+	font-weight: 400;
+	padding-left: 30px;
+	font-size: 14px;
+	padding-right: 5px;
+}
+
+/*  */
+#record .sidebar-header{
+	margin-bottom: 0;
+}
+.record-header{
+	background-color: #0074d9;
+	color: white;
+	padding: 16px 24px 20px;
+}
+.record-header div{
+	padding:0px;
+}
+.record-header h1{
+	font-size: 22px;
+	margin-top: 0px;
+}
+.record-header h2{
+	margin-top: 10px;
+}
+.record-description{
+	padding: 20px 24px;
+	font-size: 13px;
+	font-style: italic;
+}
+#record-author-2{
+	color: #999;
+}
+#record-place a{
+	color:white;
+}
+.record-img-slider{
+	height: 300px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center; 
+	cursor: pointer;
+	transition: 0.3s;
+}
+.slick-prev {
+	left: 25px;
+	z-index: 1;
+}
+.slick-next {
+	right: 25px;
+}
+#record-link{
+	cursor: pointer;
+	text-align: center;
+	padding: 10px 0;
+	margin: -38px 8px 10px;
+}
+#record-link-base{
+	padding: 16px;
+	width: 56px;
+	height: 56px;
+	box-sizing: border-box;
+	margin: 0 auto;
+	border-radius: 50%;
+	background-color: #fff;
+	box-shadow: 0 1px 6px 0 rgba(0,0,0,.3);
+}
+#record-link-base:hover{
+	box-shadow: 0 6px 12px rgba(0,0,0,.3);
+}
+.MysliderModal .modal { /* The Modal (background) */
+	background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+	z-index: 3000;
+}
+.MysliderModal .modal-content { /* Modal Content (Image) */
+	display: block;
+	width: 100%; /* Full width */
+	height: 100%; 
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+	background-color: initial;
+}
+.MysliderModal .close {
+	position: absolute;
+	top: 15px;
+	right: 35px;
+	color: #f1f1f1;
+	font-size: 40px;
+	font-weight: bold;
+	transition: 0.3s;
+}
+.MysliderModal .close:hover,
+.MysliderModal .close:focus {
+	color: #bbb;
+	text-decoration: none;
+	cursor: pointer;
+}
