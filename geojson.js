@@ -10,14 +10,11 @@ function UpdateMap(rr){
 	rr.forEach(function(r){
 		LayerMarkers.addLayer(r.point)
 	})
-	map.fitBounds(LayerMarkers.getBounds(),{paddingTopLeft: [jQuery('.sidebar').width(),0]});
+	map.fitBounds(LayerMarkers.getBounds(),{paddingTopLeft: [jQuery('#sidebar').width(),0]});
 }
 
 
 jQuery(document).ready(function(){
-	// Remove avada style!
-	jQuery('#avada-stylesheet-inline-css').remove()
-	jQuery('#avada-stylesheet-css').remove()
 
 	//Create map   
 	map = new L.Map('map1', {
@@ -34,14 +31,17 @@ jQuery(document).ready(function(){
 	});
 
 	// BaseLayer mapox
-	var mapbox = L.tileLayer.provider('MapBox', {id: 'rafnuss.npl3amec', accessToken:token});
+	var mapboxUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}';
+	var mapboxSatellite = L.tileLayer(mapboxUrl, {id: 'mapbox.satellite', attribution: '', maxZoom: 20, accessToken: token});
+	var mapboxStreets = L.tileLayer(mapboxUrl, {id: 'mapbox.streets', attribution: '', maxZoom: 20, accessToken: token});
 
 	// Initiate the map
 	map.setView(L.latLng(46.57591, 7.84956), 8);
 
 	// Add tileLayer:
 	baseLayers = {
-		'MapBox': mapbox.addTo(map),
+		'MapBox Streets': mapboxStreets,
+		'MapBox Satellite': mapboxSatellite.addTo(map),
 		'OpenStreetMap' : L.tileLayer.provider('OpenStreetMap.Mapnik'),
 		'Swisstopo': swisstopo
 	};
@@ -114,6 +114,11 @@ jQuery(document).ready(function(){
 				rr.push(r);
 			} else if (d.geometry.type == "LineString"){
 				LayerPath.addData(d)
+				LayerPath.setStyle({
+					"color": "#ad8533",
+					"weight": 5,
+					"opacity": 0.65
+				})
 			}
 		})
 
