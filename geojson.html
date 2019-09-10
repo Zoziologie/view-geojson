@@ -1,0 +1,66 @@
+---
+layout: blank
+permalink: /geojson/
+title: "GeoJSON"
+plugins: 
+- GeoJSON
+- token
+- jQuery
+- Bootstrap
+- Leaflet
+- Leaflet.MakiMarker
+- Leaflet.markercluster
+- leaflet.spin
+- selectize.js
+- leaflet-providers
+- spin.js
+- xml2json
+- leaflet-sidebar
+- font-awesome
+- slick
+---
+
+<div class="MysliderModal"></div>
+<div id="sidebar" class="leaflet-sidebar collapsed">
+	<!-- Nav tabs -->
+	<div class="leaflet-sidebar-tabs">
+		<ul role="tablist">
+			<li id="li-record" class=""><a href="#record" role="tab" title="Record"><i class="fa fa-binoculars"></i></a></li>
+		</ul>	
+	</div>
+
+	<!-- Tab panes -->
+	<div class="leaflet-sidebar-content">
+		<div class="leaflet-sidebar-pane" id="record">
+			<div class="leaflet-sidebar-header">
+				<h1>Search</h1>
+				<span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+			</div>
+			<div class="leaflet-sidebar-body">
+				<div class="row">
+					<div class="Myslider"><div>Picture</div></div>
+				</div>
+				<div class="row record-header">
+					<div class="col-sm-10">
+						<div class="record-header-specie">
+							<h1><span id="record-number">Nb</span> <span id="record-specie">Specie Name</span></h1>
+						</div>
+						<div class="record-header-date">
+							<h2><span id="record-date">date</span></h2>
+						</div>
+						<div class="record-header-place">
+							<span id="record-place">place</span>
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<a href="#" id="record-link-a" target="_blank"><div id="record-link"><div id="record-link-base"><i class="fa fa-link fa-2x" aria-hidden="true"></i></div></div></a>
+					</div>
+				</div>
+				<div class="row record-description">
+					<span id="record-comment-2">"<span id="record-comment">-</span>"</span> <span id="record-author-2">- <span id="record-author">-</span></span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="map1" class="sidebar-map"></div>
