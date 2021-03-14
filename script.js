@@ -1,6 +1,3 @@
-
-
-var token = 'pk.eyJ1IjoicmFmbnVzcyIsImEiOiIzMVE1dnc0In0.3FNMKIlQ_afYktqki-6m0g';
 var rr=[], LayerMarkers, LayerPath;
 
 var url_gist=decodeURIComponent(window.location.search.substring(1));
@@ -30,18 +27,14 @@ jQuery(document).ready(function(){
 		attribution: 'Map data &copy; 2015 swisstopo',
 	});
 
-	// BaseLayer mapox
-	var mapboxUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}';
-	var mapboxSatellite = L.tileLayer(mapboxUrl, {id: 'mapbox.satellite', attribution: '', maxZoom: 20, accessToken: token});
-	var mapboxStreets = L.tileLayer(mapboxUrl, {id: 'mapbox.streets', attribution: '', maxZoom: 20, accessToken: token});
-
 	// Initiate the map
 	map.setView(L.latLng(46.57591, 7.84956), 8);
 
 	// Add tileLayer:
 	baseLayers = {
-		'MapBox Streets': mapboxStreets,
-		'MapBox Satellite': mapboxSatellite.addTo(map),
+		'MapBox': L.tileLayer.provider('MapBox', {id: 'mapbox/streets-v11', accessToken:token.mapbox}).addTo(map),
+		'OpenStreetMap': L.tileLayer.provider('OpenStreetMap.Mapnik'),
+		'Satellite': L.tileLayer.provider('Esri.WorldImagery'),
 		'OpenStreetMap' : L.tileLayer.provider('OpenStreetMap.Mapnik'),
 		'Swisstopo': swisstopo
 	};
