@@ -42,7 +42,7 @@ jQuery(document).ready(function(){
 	control = L.control.layers(baseLayers,null,{collapsed:true}).addTo(map);
 	var sidebar = L.control.sidebar('sidebar').addTo(map);
 
-	L.MakiMarkers.accessToken = token;
+	L.MakiMarkers.accessToken = token.mapbox;
 
 	jQuery('.Myslider').slick();
 	
