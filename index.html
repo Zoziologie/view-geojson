@@ -1,117 +1,25 @@
-<html lang="en" class="no-js html-blank">
+<!DOCTYPE html>
+<html lang="">
 
 <head>
-	<meta charset="utf-8">
-	<title>View Geojson | Zoziologie</title>
-	<meta name="description" content="My personal website for bird related stuff.">
-	<meta property="og:type" content="website">
-	<meta property="og:locale" content="en_GB">
-	<meta property="og:site_name" content="Zoziologie">
-	<meta property="og:title" content="View GeoJSON">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<script src="https://kit.fontawesome.com/f15ed359e8.js" crossorigin="anonymous"></script>
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
-		integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" type="text/javascript">
-	</script>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-		type="text/css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css"
-		integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA=="
-		crossorigin="anonymous" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"
-		integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-		crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/leaflet-makimarkers@3.1.0/Leaflet.MakiMarkers.min.js"
-		type="text/javascript"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js"
-		type="text/javascript"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.css"
-		type="text/css">
-	<link rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.Default.css"
-		type="text/css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.Spin/1.1.0/leaflet.spin.min.js" type="text/javascript">
-	</script>
-	<script src="https://cdn.jsdelivr.net/npm/leaflet-sidebar-v2@3.0.6/js/leaflet-sidebar.min.js"
-		type="text/javascript"></script>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-sidebar-v2@3.0.6/css/leaflet-sidebar.min.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-providers/1.10.2/leaflet-providers.min.js"
-		type="text/javascript"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.6.3/papaparse.min.js" type="text/javascript">
-	</script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/x2js/1.2.0/xml2json.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.js"></script>
-
-	<script src="./script.js" type="text/javascript"></script>
-	<link href="./style.css" type="text/css" rel="stylesheet">
-	<script src="/token.js" type="text/javascript"></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="/favicon.ico">
+  <title>View Geojson</title>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1YGJHDR2PZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-1YGJHDR2PZ');
+  </script>
 </head>
 
 <body>
-	<div class="initial-content">
-
-		<div class="MysliderModal"></div>
-		<div id="sidebar" class="leaflet-sidebar collapsed">
-			<!-- Nav tabs -->
-			<div class="leaflet-sidebar-tabs">
-				<ul role="tablist">
-					<li id="li-record" class=""><a href="#record" role="tab" title="Record"><i
-								class="fa fa-binoculars"></i></a></li>
-				</ul>
-			</div>
-
-			<!-- Tab panes -->
-			<div class="leaflet-sidebar-content">
-				<div class="leaflet-sidebar-pane" id="record">
-					<div class="leaflet-sidebar-header">
-						<h1>Search</h1>
-						<span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
-					</div>
-					<div class="leaflet-sidebar-body">
-						<div class="row">
-							<div class="Myslider">
-								<div>Picture</div>
-							</div>
-						</div>
-						<div class="row record-header">
-							<div class="col-sm-10">
-								<div class="record-header-specie">
-									<h1><span id="record-number">Nb</span> <span id="record-specie">Specie Name</span>
-									</h1>
-								</div>
-								<div class="record-header-date">
-									<h2><span id="record-date">date</span></h2>
-								</div>
-								<div class="record-header-place">
-									<span id="record-place">place</span>
-								</div>
-							</div>
-							<div class="col-sm-2">
-								<a href="#" id="record-link-a" target="_blank">
-									<div id="record-link">
-										<div id="record-link-base"><i class="fa fa-link fa-2x" aria-hidden="true"></i>
-										</div>
-									</div>
-								</a>
-							</div>
-						</div>
-						<div class="row record-description">
-							<span id="record-comment-2">"<span id="record-comment">-</span>"</span> <span
-								id="record-author-2">- <span id="record-author">-</span></span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id="map1" class="sidebar-map"></div>
-	</div>
-
+  <div id="app"></div>
+  <script type="module" src="/src/main.js"></script>
 </body>
 
 </html>
