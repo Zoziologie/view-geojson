@@ -24,7 +24,7 @@ import logo from "./assets/logo.svg";
           v-if="path && path.length > 0"
           color="#ad8533"
           :weight="5"
-          :opacity="0.65"
+          :opacity="1"
         ></l-polyline>
         <v-marker-cluster
           :options="{
@@ -35,7 +35,7 @@ import logo from "./assets/logo.svg";
         >
           <l-marker
             ref="markers"
-            v-for="s in sightings"
+            v-for="s in hover_s ? hover_s : sightings_species_filters_map"
             :options="{ count: s.count }"
             :key="s.time + s.common_name"
             :lat-lng="[s.lon, s.lat]"
@@ -49,7 +49,26 @@ import logo from "./assets/logo.svg";
       </l-map>
 
       <b-sidebar id="sidebar-1" title="View Geojson" visible shadow>
-        <div class="px-3 py-2"></div>
+        <div class="px-3 py-2">
+          <b-form-input v-model="filter_text" placeholder="Filter species name..." />
+          <b-card-group deck class="mt-2">
+            <b-card header="Sightings" no-body>
+              <b-list-group flush>
+                <b-list-group-item
+                  href="#"
+                  v-for="s in sightings_species_filters"
+                  :key="s[0].common_name"
+                  class="d-flex justify-content-between align-items-center py-2 px-2"
+                  @mouseover="hover_s = s"
+                  @mouseout="hover_s = false"
+                >
+                  {{ s[0].common_name }}
+                  <b-badge variant="primary" pill>{{ s.length }}</b-badge>
+                </b-list-group-item>
+              </b-list-group>
+            </b-card>
+          </b-card-group>
+        </div>
         <template #footer>
           <div class="d-flex bg-dark text-light align-items-center px-3 py-2 w-100 justify-content-between">
             <a v-b-modal.modal-instruction title="instruction/setting"> <b-icon-gear-fill /></a>
@@ -118,13 +137,13 @@ export default {
       tileProviders: [
         {
           name: "Mapbox.Streets",
-          visible: true,
+          visible: false,
           url: "https://api.mapbox.com/styles/v1/mapbox/streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmFmbnVzcyIsImEiOiIzMVE1dnc0In0.3FNMKIlQ_afYktqki-6m0g",
           attribution: "",
         },
         {
           name: "Mapbox.Satellite",
-          visible: false,
+          visible: true,
           url: "https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmFmbnVzcyIsImEiOiIzMVE1dnc0In0.3FNMKIlQ_afYktqki-6m0g",
           attribution: "",
         },
@@ -134,21 +153,16 @@ export default {
           attribution: '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
           url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
         },
-        {
-          name: "Esri.WorldImagery",
-          visible: false,
-          url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-          attribution:
-            "Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community",
-        },
       ],
+      sightings_species: [],
       sightings: [],
       path: null,
+      filter_text: "",
+      hover_s: false,
     };
   },
   methods: {
     unloadOld(json) {
-      console.log(json);
       this.sightings = json.features
         .filter((f) => f.geometry.type == "Point")
         .map((f) => {
@@ -166,11 +180,19 @@ export default {
             comment: s.description,
           };
         });
+      this.sightings_species = this.sightings.reduce((objectsByKeyValue, obj) => {
+        const value = obj.common_name;
+        objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj);
+        return objectsByKeyValue;
+      }, {});
+
       this.path = json.features
         .filter((d) => d.geometry.type == "LineString")[0]
         .geometry.coordinates.map((c) => [c[1], c[0]]);
 
-      this.$refs.map.mapObject.fitBounds(this.sightings.map((s) => [s.lon, s.lat]));
+      setTimeout(() => {
+        this.$refs.map.mapObject.fitBounds(this.sightings.map((s) => [s.lon, s.lat]));
+      }, 500);
     },
     iconCreateFunction: function (cluster) {
       var childCount = cluster.getAllChildMarkers().reduce((acc, x) => acc + x.options.count, 0);
@@ -204,7 +226,26 @@ export default {
       });
     },
   },
-  computed: {},
+  computed: {
+    sightings_species_filters_map() {
+      return Object.keys(this.sightings_species_filters).reduce((a, key) => {
+        return [...a, ...this.sightings_species_filters[key]];
+      }, []);
+    },
+    sightings_species_filters() {
+      return Object.keys(this.sightings_species)
+        .filter((key) => {
+          const ss = this.sightings_species[key][0];
+          return (
+            ss.common_name.toLowerCase().includes(this.filter_text.toLowerCase()) ||
+            ss.scientific_name.toLowerCase().includes(this.filter_text.toLowerCase())
+          );
+        })
+        .reduce((cur, key) => {
+          return Object.assign(cur, { [key]: this.sightings_species[key] });
+        }, {});
+    },
+  },
   mounted() {
     const geojson_url = decodeURIComponent(window.location.href.split("?")[1]);
     console.log(geojson_url);
