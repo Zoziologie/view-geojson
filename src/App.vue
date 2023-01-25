@@ -37,7 +37,7 @@ import logo from "./assets/logo.svg";
             ref="markers"
             v-for="s in hover_s ? hover_s : sightings_species_filters_map"
             :options="{ count: s.count }"
-            :key="s.time + s.common_name"
+            :key="s.time + s.common_name + s.comment"
             :lat-lng="[s.lon, s.lat]"
             :icon="getIcon(s)"
           >
@@ -71,8 +71,7 @@ import logo from "./assets/logo.svg";
         </div>
         <template #footer>
           <div class="d-flex bg-dark text-light align-items-center px-3 py-2 w-100 justify-content-between">
-            <a v-b-modal.modal-instruction title="instruction/setting"> <b-icon-gear-fill /></a>
-            <a href="https://github.com/Zoziologie/global-rare-ebird/" target="_blank" title="github">
+            <a href="https://github.com/Zoziologie/view-geojson/" target="_blank" title="github">
               <b-icon-github style="color: white" />
             </a>
             <a href="https://zoziologie.raphaelnussbaumer.com/" target="_blank" title="zoziologie.com">
