@@ -166,12 +166,13 @@ export default {
         .filter((f) => f.geometry.type == "Point")
         .map((f) => {
           let s = f.properties;
+          console.log(s);
           return {
             location_name: s.place,
             lat: f.geometry.coordinates[0],
             lon: f.geometry.coordinates[1],
-            date: s.date.split(" ")[0], // required
-            time: s.date.split(" ")[1],
+            date: s.date ? s.date.split(" ")[0] : "", // required
+            time: s.date ? s.date.split(" ")[1] : "",
             common_name: s.specie,
             scientific_name: s.latin,
             count: parseInt(s.count),
