@@ -21,7 +21,7 @@
     "leaflet": "^1.9.4",
     "vite": "^5.0.0",
     "@vitejs/plugin-vue2": "^2.3.1",
-    "vue": "^2.7.16",
+    "vue": "^3.0.0",
     "vue2-leaflet": "^2.7.1",
     "vue2-leaflet-markercluster": "^3.1.0"
   },
