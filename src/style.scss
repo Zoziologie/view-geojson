@@ -1,5 +1,21 @@
+:root {
+  color-scheme: light;
+  font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+  background: #eef4f8;
+  color: #173042;
+}
+
 html,
-body {
+body,
+#app {
   height: 100%;
   margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
 }
